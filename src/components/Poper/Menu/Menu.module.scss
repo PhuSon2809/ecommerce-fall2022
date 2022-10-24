@@ -1,0 +1,35 @@
+@use "../../../styles/" as *;
+
+.wrapper {
+  .menu-wrapper {
+    .action-btn {
+      @include flex(flex-start, unset, column);
+      gap: 7px;
+      width: 201px;
+
+      .button {
+        justify-content: unset;
+        padding: 5px;
+        width: 100%;
+        height: 34px;
+        color: $text-poper-color;
+        font-size: 16px;
+        line-height: 19px;
+        font-family: $font-family-inter;
+        border-radius: unset;
+
+        &:hover {
+          background: $bg-hover;
+        }
+
+        .title {
+          font-weight: 400 !important;
+        }
+      }
+
+      .gray {
+        color: $inactive-status-color;
+      }
+    }
+  }
+}

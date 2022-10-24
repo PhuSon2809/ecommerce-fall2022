@@ -1,0 +1,32 @@
+@use "../../styles/" as *;
+
+.wrapper {
+  @include flex(center, center, row);
+  padding: 7px 25px;
+  gap: 10px;
+  width: fit-content;
+  height: 31px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  .title {
+    font-family: $font-family-inter;
+    // font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+.icon {
+  @include flex(center, center, unset);
+  height: 24px;
+  width: 24px;
+}
+
+.primary {
+  color: $white !important;
+  background: $default-color;
+  .title {
+    width: fit-content;
+  }
+}

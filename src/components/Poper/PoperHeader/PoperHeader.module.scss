@@ -1,0 +1,21 @@
+@use "../../../styles/" as *;
+
+.header {
+  @include flex(flex-start, center, column);
+  gap: 3px;
+
+  .title {
+    width: 184px;
+    line-height: 19px;
+    font-weight: 700;
+    font-size: 16px;
+    color: $text-title-poper-color;
+  }
+
+  .line {
+    width: 184px;
+    height: 0px;
+    border-top: 2px solid $boder-line-color;
+    display: block;
+  }
+}

@@ -1,0 +1,15 @@
+@use "../../styles/" as *;
+
+.wrapper {
+  @include flex(center, unset, column);
+
+  .container {
+    width: 100%;
+    display: flex;
+
+    .content {
+      flex: 1; //Chiếm hết phần còn lại
+      padding-bottom: 50px;
+    }
+  }
+}

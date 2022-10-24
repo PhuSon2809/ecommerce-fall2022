@@ -1,0 +1,86 @@
+@use "../../styles/" as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $font-family-inter;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  color: $black;
+  transition: 0.2s ease-in-out;
+}
+
+button,
+input,
+[tabindex] {
+  outline: none;
+  border: none;
+  background: none;
+}
+
+a[href] {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+//scrollbar
+html *::-webkit-scrollbar {
+  border-radius: 0;
+  width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #b9b9b9;
+}
+
+html *::-webkit-scrollbar-track {
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+// Custom tippy tooltip
+body {
+  .tippy-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 5px;
+
+    // width: 133px;
+    height: 37px;
+
+    color: $black;
+    background: $white;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.16);
+    border-radius: 10px;
+  }
+
+  .tippy-arrow {
+    display: none;
+  }
+
+  .tippy-content {
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

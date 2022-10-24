@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&family=Inter:wght@400;700&family=Montserrat:wght@300;400;500;600;700;800;900&family=PT+Serif:wght@400;700&family=Poppins:wght@200;300;400;500;600;700&family=Raleway:ital,wght@0,100;0,300;0,400;0,500;1,600&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&family=Tiro+Devanagari+Sanskrit&display=swap");
+
+//Fonts
+$font-family-roboto: "Roboto", sans-serif;
+$font-family-inter: "Inter", sans-serif;
+$font-family-segoe: "Segoe UI", sans-serif;
+
+//Color
+$black: #000;
+$white: #fff;
+$orange: #d55b13;
+$default-color: #2d3748;
+$main-color: #0b2136;
+$bg-color: #2196f3;
+$blue-main-color: #285d9a;
+$text-title-poper-color: #2a4365;
+$text-poper-color: #2c5282;
+$text-meta-color: #474747;
+$inactive-status-color: #b9b9b9;
+$text-link-color: #0C4DA2;
+$text-modifi-material-color: #323232;
+
+$bg-nav-color: #edf2f7;
+$bg-hover: #f1f1f1;
+$bg-drag-btn-color: rgba(201, 203, 208, 0.15);
+$bg-lesson-color: #f1f1f1;
+
+$boder-line-color: #e2e8f0;
+$box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), -4px -4px 4px rgba(0, 0, 0, 0.1);
+
+//Width - Height
+$gap: 10px;
+
+$header-height: 65px;
+$default-layout-width: 1150px;
+$default-layout-horizontal-spacer: 24px;
+
+$sidebar-width: 240px;
+$sidebar-height: 832px;
+$item-sidebar-height: 24px;

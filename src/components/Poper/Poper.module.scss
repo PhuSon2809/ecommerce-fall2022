@@ -1,0 +1,13 @@
+@use "../../styles/" as *;
+
+.wrapper {
+  @include flex(flex-start, center, column);
+  padding: 10px;
+  gap: 5px;
+  width: 100%;
+  min-height: 100px;
+  max-height: min((100vh - 96px) - 60px, 734px);
+  background: $white;
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+}
