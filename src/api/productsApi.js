@@ -2,9 +2,9 @@ import axiosClient from "./axiosClient";
 
 
 const productsApi = {
-    getList(data) {
-        const url = '/user/suppliersign_in';
-        return axiosClient.post(url, data);
+    getList(storeId) {
+        const url = `/Item/store?storeId=${storeId}`;
+        return axiosClient.get2(url);
     },
 }
 
