@@ -1,13 +1,20 @@
 import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import DefaultLayout from "./layouts";
+import Authenticated from "./pages/Authenticated/Authenticated";
 import { supplierRoutes } from "./routes";
 
 function App() {
+
+  const currentUser = useSelector((state) => state.account.current);
+
   return (
     <div className="App">
       <Routes>
-        {supplierRoutes.map((route, index) => {
+        {!currentUser ? <Route path="/" element={<Authenticated />}/> : 
+
+        supplierRoutes.map((route, index) => {
           const Page = route.component;
 
           let Layout = DefaultLayout;
@@ -28,6 +35,8 @@ function App() {
             />
           );
         })}
+
+
       </Routes>
     </div>
   );

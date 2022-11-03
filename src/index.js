@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "~/App";
 import GlobalStyles from "./components/GlobalStyles";
-import store from "./redux/configStore";
+import store from "./redux/store/configStore";
 import reportWebVitals from "./reportWebVitals";
 import "tippy.js/dist/tippy.css";
 
