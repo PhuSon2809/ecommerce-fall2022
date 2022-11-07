@@ -1,11 +1,21 @@
-import { Grid, Paper, TextField, Typography, Button } from "@mui/material";
+import {
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+  Button,
+  Autocomplete,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import AddBoxIcon from "@mui/icons-material/AddBox";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import FormSubList from "./form-subList/formSubList";
+import categoryApi from "~/api/categoryApi";
 
 function AddProduct() {
   const [subItemFormList, setSubItemFormList] = useState([]);
@@ -24,11 +34,39 @@ function AddProduct() {
     },
   });
 
+  const [categoryList, setCategoryList] = useState([]);
+
+  const fetchData = async () => {
+    await categoryApi
+      .getList()
+      .then((response) => setCategoryList(response.data));
+  };
+
+  useEffect(() => {
+    fetchData().catch((error) => {
+      console.log(error);
+    });
+  }, []);
+
+  // const [subCategoryList, setSubCategoryList] = useState([]);
+
+  // const fetchDataSubCategory = async (categoryID) => {
+  //   await categoryApi
+  //     .getCategory(categoryID)
+  //     .then((response) => setSubCategoryList(response.data));
+  // };
+
+  // useEffect(() => {
+  //   fetchDataSubCategory().catch((error) => {
+  //     console.log(error);
+  //   });
+  // }, [subCategoryList]);
+
   const handleClose = (index) => {
     console.log(subItemFormList);
-    subItemFormList.slice()
+    subItemFormList.slice();
     // subItemFormList.remove()
-  }
+  };
 
   const handleClickSubItem = (event) => {
     // setIsSubItem(!isSubItem);
@@ -41,7 +79,7 @@ function AddProduct() {
         >
           <Typography>Nhóm phân loại</Typography>
           <TextField
-            {...register("subItem")}
+            {...register("list_SubItem").subItem}
             autoComplete="off"
             fullWidth
             label="Phân loại hàng"
@@ -87,8 +125,6 @@ function AddProduct() {
       )
     );
   };
-
-
 
   const submitForm = async (values) => {
     console.log("values: ", values);
@@ -147,6 +183,42 @@ function AddProduct() {
             margin="normal"
             sx={{ width: "50%", padding: 0 }}
           />
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            // value={age}
+            label="Category"
+            // onChange={handleChange}
+            sx={{ width: "50%", padding: 0 }}
+          >
+            {categoryList.map((category, index) => (
+              <MenuItem
+                key={index}
+                // onClick={fetchDataSubCategory(category.categoryID)}
+                value={category.categoryID}
+              >
+                {category.name}
+              </MenuItem>
+            ))}
+          </Select>
+
+          {/* <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            // value={age}
+            label="Category"
+            // onChange={handleChange}
+            sx={{ width: "50%", padding: 0 }}
+          >
+            {subCategoryList.map((subCategory) => (
+              <MenuItem
+                key={subCategory.sub_CategoryID}
+                value={subCategory.sub_CategoryID}
+              >
+                {subCategory.sub_categoryName}
+              </MenuItem>
+            ))}
+          </Select> */}
 
           <TextField
             {...register("Image")}
@@ -177,44 +249,43 @@ function AddProduct() {
               {subItemFormList}
 
               {/* <Box component={Paper}>
-                  <TextField
-                    {...register("subItem")}
-                    autoComplete="off"
-                    fullWidth
-                    label="Phân loại hàng"
-                    variant="outlined"
-                    margin="normal"
-                    sx={{ width: "50%", padding: 0 }}
-                  />
-                  <TextField
-                    {...register("amount")}
-                    autoComplete="off"
-                    fullWidth
-                    label="Số lượng"
-                    variant="outlined"
-                    margin="normal"
-                    sx={{ width: "50%", padding: 0 }}
-                  />
-                  <TextField
-                    {...register("price")}
-                    autoComplete="off"
-                    fullWidth
-                    label="Đơn giá"
-                    variant="outlined"
-                    margin="normal"
-                    sx={{ width: "50%", padding: 0 }}
-                  />
-                  <TextField
-                    {...register("image")}
-                    autoComplete="off"
-                    fullWidth
-                    label="Hình ảnh"
-                    variant="outlined"
-                    margin="normal"
-                    sx={{ width: "50%", padding: 0 }}
-                  />
-                </Box>
-              */}
+                <TextField
+                  {...register("subItem")}
+                  autoComplete="off"
+                  fullWidth
+                  label="Phân loại hàng"
+                  variant="outlined"
+                  margin="normal"
+                  sx={{ width: "50%", padding: 0 }}
+                />
+                <TextField
+                  {...register("amount")}
+                  autoComplete="off"
+                  fullWidth
+                  label="Số lượng"
+                  variant="outlined"
+                  margin="normal"
+                  sx={{ width: "50%", padding: 0 }}
+                />
+                <TextField
+                  {...register("price")}
+                  autoComplete="off"
+                  fullWidth
+                  label="Đơn giá"
+                  variant="outlined"
+                  margin="normal"
+                  sx={{ width: "50%", padding: 0 }}
+                />
+                <TextField
+                  {...register("image")}
+                  autoComplete="off"
+                  fullWidth
+                  label="Hình ảnh"
+                  variant="outlined"
+                  margin="normal"
+                  sx={{ width: "50%", padding: 0 }}
+                />
+              </Box> */}
             </Grid>
             <Grid item xs={4}></Grid>
             <Grid item xs={8}></Grid>

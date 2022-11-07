@@ -22,13 +22,13 @@ function Header() {
         <div className={cx("group-btn")}>
           <Button
             className={cx("button")}
-            leftIcon={<CropOriginalIcon fontSize="large" />}
+            leftIcon={<CropOriginalIcon fontSize="medium" />}
           >
             Shop profile
           </Button>
           <Button
             className={cx("button")}
-            leftIcon={<LogoutIcon fontSize="large" />}
+            leftIcon={<LogoutIcon fontSize="medium" />}
           >
             Logout
           </Button>
@@ -69,10 +69,10 @@ function Header() {
 
           <div className={cx("action-btn")}>
             <span>
-              <AppsIcon fontSize="large" />
+              <AppsIcon fontSize="medium" />
             </span>
             <span>
-              <NotificationsActiveIcon fontSize="large" />
+              <NotificationsActiveIcon fontSize="medium" />
             </span>
           </div>
         </div>

@@ -15,6 +15,9 @@ axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
 axios.defaults.headers.delete['Access-Control-Allow-Origin'] = '*'
 
 export const axiosClient = {
+    get0(url) {
+        return axios.get(`${url}`).catch(error => console.log(error))
+    },
     get(url, slug = '') {
         return axios.get(`${url}/${slug}`).catch(error => console.log(error))
     },

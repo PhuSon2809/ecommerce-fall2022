@@ -11,13 +11,13 @@ export const SidebarData = [
   {
     title: "Home",
     path: config.routes.home,
-    icon: <HomeOutlinedIcon fontSize="large" />,
+    icon: <HomeOutlinedIcon fontSize="medium" />,
   },
   {
     title: "Product",
-    icon: <ShoppingBagOutlinedIcon fontSize="large" />,
-    iconClosed: <KeyboardArrowDownOutlinedIcon fontSize="large" />,
-    iconOpened: <KeyboardArrowLeftOutlinedIcon fontSize="large" />,
+    icon: <ShoppingBagOutlinedIcon fontSize="medium" />,
+    iconClosed: <KeyboardArrowDownOutlinedIcon fontSize="medium" />,
+    iconOpened: <KeyboardArrowLeftOutlinedIcon fontSize="medium" />,
 
     subNav: [
       {
@@ -32,9 +32,9 @@ export const SidebarData = [
   },
   {
     title: "Order",
-    icon: <ShoppingCartCheckoutOutlinedIcon fontSize="large" />,
-    iconClosed: <KeyboardArrowDownOutlinedIcon fontSize="large" />,
-    iconOpened: <KeyboardArrowLeftOutlinedIcon fontSize="large" />,
+    icon: <ShoppingCartCheckoutOutlinedIcon fontSize="medium" />,
+    iconClosed: <KeyboardArrowDownOutlinedIcon fontSize="medium" />,
+    iconOpened: <KeyboardArrowLeftOutlinedIcon fontSize="medium" />,
 
     subNav: [
       {
@@ -49,9 +49,9 @@ export const SidebarData = [
   },
   {
     title: "Shop",
-    icon: <StorefrontIcon fontSize="large" />,
-    iconClosed: <KeyboardArrowDownOutlinedIcon fontSize="large" />,
-    iconOpened: <KeyboardArrowLeftOutlinedIcon fontSize="large" />,
+    icon: <StorefrontIcon fontSize="medium" />,
+    iconClosed: <KeyboardArrowDownOutlinedIcon fontSize="medium" />,
+    iconOpened: <KeyboardArrowLeftOutlinedIcon fontSize="medium" />,
 
     subNav: [
       {
@@ -66,9 +66,9 @@ export const SidebarData = [
   },
   {
     title: "Settings",
-    icon: <SettingsOutlinedIcon fontSize="large" />,
-    iconClosed: <KeyboardArrowDownOutlinedIcon fontSize="large" />,
-    iconOpened: <KeyboardArrowLeftOutlinedIcon fontSize="large" />,
+    icon: <SettingsOutlinedIcon fontSize="medium" />,
+    iconClosed: <KeyboardArrowDownOutlinedIcon fontSize="medium" />,
+    iconOpened: <KeyboardArrowLeftOutlinedIcon fontSize="medium" />,
 
     subNav: [
       {
