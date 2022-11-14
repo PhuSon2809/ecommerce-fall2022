@@ -4,7 +4,7 @@
   @include flex(flex-start, unset, column);
   width: $sidebar-width;
   min-height: calc(100vh - $header-height);
-  max-height: calc(100vh - $header-height);
+  max-height: 100%;
   padding: 30px 10px 0;
   gap: 25px;
   color: $blue-main-color;

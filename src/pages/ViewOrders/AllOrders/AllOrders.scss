@@ -1,0 +1,41 @@
+@use "../../../styles/" as *;
+
+.all-orders {
+  .inner-day {
+    @include flex(center, flex-end, row);
+
+    .day-range {
+      @include flex(center, unset, row);
+      gap: 10px;
+    }
+  }
+
+  .table {
+    .gray {
+      color: gray;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    .infor {
+      @include flex(center, unset, column);
+      gap: 10px;
+
+      .inner {
+        @include flex(center, unset, row);
+        gap: 10px;
+
+        .img {
+          height: 100px;
+          min-width: 150px;
+
+          img {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}

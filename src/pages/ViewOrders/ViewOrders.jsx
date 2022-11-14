@@ -44,6 +44,8 @@ function ViewOrders() {
     setValue(newValue);
   };
 
+  
+
   return (
     <div className="vieworders">
       <Box sx={{ width: "100%" }}>
@@ -58,7 +60,7 @@ function ViewOrders() {
             <Tab label="Item Three" {...a11yProps(2)} />
           </Tabs>
         </Box>
-        <AllOrders value={value} index={0} />
+        <AllOrders tabValue={value} index={0} />
         <TabPanel value={value} index={1}>
           Item Two
         </TabPanel>
