@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   Box,
+  Button,
   Paper,
   Table,
   TableBody,
@@ -12,25 +13,27 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import ClearIcon from "@mui/icons-material/Clear";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import "./AllOrders.scss";
 import ordersApi from "~/api/ordersApi";
+import "./AllOrders.scss";
+import formatDate from "~/utils/formatDate";
+import currencyFormat from "~/utils/formatPrize";
+import { useNavigate } from "react-router-dom";
 
 function AllOrders({ tabValue, index, ...other }) {
-  const [value, setValue] = useState(new Date());
-
-  const [orders, setOrders] = useState([]);
-
   const currentAccount = useSelector((state) => state.account.current);
-  console.log(currentAccount);
+  const [value, setValue] = useState(new Date());
+  const [orders, setOrders] = useState([]);
 
   const fetchData = async () => {
     await ordersApi
-      .getList(currentAccount.storeID)
+      .getListOrder(currentAccount.storeID)
       .then((response) => setOrders(response.data));
   };
 
@@ -40,6 +43,7 @@ function AllOrders({ tabValue, index, ...other }) {
     });
   }, [orders]);
 
+  /** =========== Pagination ===========*/
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -48,8 +52,15 @@ function AllOrders({ tabValue, index, ...other }) {
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(event.target.value, 10);
+    setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
+  };
+
+  const navigate = useNavigate();
+
+  const handleClickDetail = (orderID) => {
+    console.log(orderID);
+    navigate(`/orderDetail/${orderID}`);
   };
 
   return (
@@ -63,7 +74,7 @@ function AllOrders({ tabValue, index, ...other }) {
     >
       {tabValue === index && (
         <Box sx={{ p: 3 }}>
-          <div className="inner-day">
+          <div className="inner-day" style={{ marginBottom: "20px" }}>
             <div className="day-range">
               <Typography>Order date</Typography>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -95,30 +106,29 @@ function AllOrders({ tabValue, index, ...other }) {
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell sx={{ width: "45%" }} align="left">
+                    <TableCell sx={{ width: "40%" }} align="left">
                       Product
                     </TableCell>
                     <TableCell sx={{ width: "10%" }} align="left">
-                      Total
+                      Total Order
+                    </TableCell>
+                    <TableCell sx={{ width: "10%" }} align="left">
+                      Transport
                     </TableCell>
                     <TableCell sx={{ width: "15%" }} align="left">
                       Status
                     </TableCell>
                     <TableCell sx={{ width: "15%" }} align="left">
-                      Transport
+                      Date create
                     </TableCell>
-                    <TableCell sx={{ width: "15%" }} align="left">
+                    <TableCell sx={{ width: "10%" }} align="left">
                       Action
                     </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {orders.map((row) => (
-                    <TableRow
-                      hover
-                      key={row.orderID}
-                      //   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
+                    <TableRow hover key={row.orderID}>
                       <TableCell align="left">
                         <div className="infor">
                           {row.details.map((detail) => (
@@ -130,7 +140,7 @@ function AllOrders({ tabValue, index, ...other }) {
                                 />
                               </div>
                               <div className="name">
-                                <Typography variant="h6">
+                                <Typography className="itemName">
                                   {detail.sub_ItemName}
                                 </Typography>
                                 <Typography className="amount gray">
@@ -142,24 +152,55 @@ function AllOrders({ tabValue, index, ...other }) {
                         </div>
                       </TableCell>
                       <TableCell align="left">
-                        <Typography>đ100.000</Typography>
-                        <Typography className="gray">Is Pay</Typography>
+                        <Typography className="bold">
+                          {currencyFormat(
+                            row.details.reduce(function (total, detail) {
+                              return (total +=
+                                detail.pricePurchase * detail.amount);
+                            }, 0)
+                          )}
+                        </Typography>
+                        <Typography className="gray">
+                          {row.orderStatus.statusName}
+                        </Typography>
                       </TableCell>
                       <TableCell align="left">
                         <Typography className="bold">
-                          {row.orderShip.status}
+                          {currencyFormat(row.feeShip)}
                         </Typography>
-                        <Typography className="gray">Is Pay</Typography>
                       </TableCell>
                       <TableCell align="left">
-                        <Typography className="bold">đ100.000</Typography>
-                        <Typography className="gray">Is Pay</Typography>
+                        <Typography className="bold">
+                          {row.orderShip?.status}
+                        </Typography>
                       </TableCell>
                       <TableCell align="left">
-                        <Typography>Shipping information</Typography>
-                        {row.orderStatus.orderStatusID === 1 && (
-                          <Typography>Cancel order</Typography>
-                        )}
+                        <Typography>{formatDate(row.create_Date)}</Typography>
+                      </TableCell>
+                      <TableCell align="left">
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "10px",
+                            flexDirection: "column",
+                          }}
+                        >
+                          <Button
+                            variant="outlined"
+                            color="success"
+                            onClick={() => handleClickDetail(row.orderID)}
+                          >
+                            <RemoveRedEyeIcon />
+                            <Typography sx={{ paddingLeft: "3px" }}>
+                              Detail
+                            </Typography>
+                          </Button>
+                          {row.orderStatus.orderStatusID === 1 && (
+                            <Button variant="outlined" color="error">
+                              <ClearIcon /> Cancel
+                            </Button>
+                          )}
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))}

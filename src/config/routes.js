@@ -10,6 +10,7 @@ const routes = {
   //orders
   viewOrders: "/viewOrders",
   ordersCancel: "/ordersCancel",
+  orderDetail: "/orderDetail/:orderID",
 
   //shop
   shopProfile: "/shopProfile",

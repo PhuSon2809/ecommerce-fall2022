@@ -20,11 +20,11 @@
     }
 
     .infor {
-      @include flex(center, unset, column);
+      @include flex(flex-start, unset, column);
       gap: 10px;
 
       .inner {
-        @include flex(center, unset, row);
+        @include flex(flex-start, flex-start, row);
         gap: 10px;
 
         .img {
@@ -33,6 +33,15 @@
 
           img {
             height: 100%;
+          }
+        }
+
+        .name{
+          padding-top: 5px;
+
+          .itemName{
+            font-size: 18px;
+            font-weight: 600;
           }
         }
       }

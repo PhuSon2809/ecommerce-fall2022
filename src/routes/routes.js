@@ -10,6 +10,7 @@ import ShopProfile from "~/pages/ShopProfile/ShopProfile";
 import ViewOrders from "~/pages/ViewOrders/ViewOrders";
 import ViewProducts from "~/pages/ViewProducts/ViewProducts";
 import Authenticated from "~/pages/Authenticated/Authenticated";
+import OrderDetail from "~/pages/OrderDetail/OrderDetail";
 
 const supplierRoutes = [
 
@@ -28,6 +29,10 @@ const supplierRoutes = [
   {
     path: config.routes.viewOrders,
     component: ViewOrders,
+  },
+  {
+    path: config.routes.orderDetail,
+    component: OrderDetail,
   },
   {
     path: config.routes.shopProfile,

@@ -21,7 +21,7 @@ export const axiosClient = {
     get(url, slug = '') {
         return axios.get(`${url}/${slug}`).catch(error => console.log(error))
     },
-    get2(url, params) {
+    getWithID(url, params) {
         return axios.get(`${url}`, params).catch(error => console.log(error))
     },
 

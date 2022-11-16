@@ -1,9 +1,14 @@
 import axiosClient from "./axiosClient";
 
 const ordersApi = {
-  getList(storeId) {
+  getListOrder(storeId) {
     const url = `/Order/get_order_status?storeID=${storeId}`;
-    return axiosClient.get2(url);
+    return axiosClient.getWithID(url);
+  },
+
+  getOrderDetail(orderId) {
+    const url = `/Order/order_info?orderID=${orderId}`;
+    return axiosClient.getWithID(url);
   },
 };
 
