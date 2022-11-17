@@ -1,9 +1,14 @@
-import React from 'react'
+// import axios from 'axios';
+// import React from 'react'
 
-function OrdersCancel() {
-  return (
-    <div>OrdersCancel</div>
-  )
-}
+// function OrdersCancel() {
+  
 
-export default OrdersCancel
+
+
+//   return (
+    
+//   )
+// }
+
+// export default OrdersCancel

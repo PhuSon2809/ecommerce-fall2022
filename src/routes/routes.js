@@ -11,12 +11,17 @@ import ViewOrders from "~/pages/ViewOrders/ViewOrders";
 import ViewProducts from "~/pages/ViewProducts/ViewProducts";
 import Authenticated from "~/pages/Authenticated/Authenticated";
 import OrderDetail from "~/pages/OrderDetail/OrderDetail";
+import AccountInfor from "~/pages/Account/AccountInfor";
 
 const supplierRoutes = [
 
   {
     path: config.routes.home,
     component: Home,
+  },
+  {
+    path: config.routes.detailAccount,
+    component: AccountInfor,
   },
   {
     path: config.routes.viewProducts,

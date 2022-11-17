@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+@import "react-slideshow-image/dist/styles.css";
+
+body, html {
+    font-family: 'Roboto', sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+:root {
+    --white-color: #fff;
+    --black-color: #333;
+   
+    --star-color: #ffce3f;
+    --primary-color: rgb(45, 125, 238);
+    --primary-hover-color: rgb(73, 144, 242);
+    --border-color: #dbdbdb;
+    --navbar-height: 34px;
+    --header-height: 120px;
+    --header-with-search-height: calc(var(--header-height) - var(--navbar-height));
+}
+.btn {
+    min-width: 124px;
+    height: 34px;
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    font-size: 1rem;
+    padding: 0 12px;
+    outline: none;
+    cursor: pointer;
+    color: var(--text-color);
+    background-color: var(--white-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.6rem;
+}
+
+.btn.btn--normal:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.btn.btn--primary {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+.btn.btn--primary:hover {
+    background-color: var(--primary-hover-color);
+    color: var(--white-color);
+}
+.title_table{
+    padding: 15px;
+    color: var(--primary-color);
+}
+.title{
+    background: rgba(0,0,0,.05);
+    color: rgba(0,0,0,.87);
+    font-size: 1.25rem;
+    padding: 0.875rem;
+    text-transform: capitalize;
+}
+.total_bill{
+    font-size: 1.5rem;
+    color:rgb(45, 125, 238)
+}
+.bill_item_img{
+    width: 200px;
+    height: 200px;
+}
+.List_order{
+    margin-top: 20px;
+}
+.disabled_store{
+    display: none;
+}
+.display_store{
+    display: block
+}
+.income_system td {
+    padding: 10px;
+}
+.amount_system{
+    font-size: 12px;
+}
+.income_system{
+    margin: 20px;
+}

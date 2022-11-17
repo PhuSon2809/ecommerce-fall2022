@@ -15,6 +15,7 @@ const routes = {
   //shop
   shopProfile: "/shopProfile",
   reports: "/reports",
+  detailAccount: "/detailAccount/:id",
 
   //setting
   myAddresses: "/myAddresses",

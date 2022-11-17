@@ -1,0 +1,27 @@
+.feedback_user_infor{
+    display: flex;
+    align-items: center;
+}
+.img_fb{
+margin: 10px;
+    width: 100px;
+    height: 100px;
+}
+.list_img_fb{
+    display: flex;
+}
+.feedback{
+    padding: 15px;
+}
+.feedback_null{
+    text-align: center;
+    margin: 20px;
+}
+.null_img{
+    margin-bottom: 15px;
+}
+.fb_comment{
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+}

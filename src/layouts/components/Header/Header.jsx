@@ -12,25 +12,38 @@ import Poper from "~/components/Poper";
 import styles from "./Header.module.scss";
 import { Link } from "react-router-dom";
 import config from "~/config";
-
+import { useDispatch } from "react-redux";
+import { logout } from "~/pages/Authenticated/AccountSlice";
+import { useSelector } from "react-redux";
 const cx = classNames.bind(styles);
 
 function Header() {
+  const currentAccount = useSelector((state) => state.account.current);
+  const dispatch = useDispatch();
+
+  const handleLogout = () =>{
+    const action = logout();
+    dispatch(action);
+  }
+
+
   const renderResult = (attrs) => (
     <div className={cx("pop-wrapper")} tabIndex="-1" {...attrs}>
       <Poper className={cx("menu-wrapper")}>
         <div className={cx("group-btn")}>
           <Button
+            href = {`/detailAccount/${currentAccount.userID}`}
             className={cx("button")}
-            leftIcon={<CropOriginalIcon fontSize="medium" />}
+            leftIcon={<CropOriginalIcon fontSize="large" />}
           >
-            Shop profile
+            Thông tin người dùng
           </Button>
           <Button
             className={cx("button")}
-            leftIcon={<LogoutIcon fontSize="medium" />}
+            leftIcon={<LogoutIcon fontSize="large" />}
+            onClick={handleLogout}
           >
-            Logout
+            Đăng xuất
           </Button>
         </div>
       </Poper>
@@ -58,10 +71,10 @@ function Header() {
             <div className={cx("info")}>
               <Image
                 className={cx("user-avatar")}
-                src="https://firebasestorage.googleapis.com/v0/b/hostelmanagement-ae202.appspot.com/o/Avatar%2F000041.JPG?alt=media&token=4c9b1e96-b765-4265-9930-a4540a1b8230"
+                src={currentAccount.image.path}
                 alt="avatar"
               />
-              <span className={cx("user-name")}>Tran Phu Son</span>
+              <span className={cx("user-name")}>{currentAccount.userName}</span>
             </div>
           </HeadlessTippy>
 
@@ -69,10 +82,10 @@ function Header() {
 
           <div className={cx("action-btn")}>
             <span>
-              <AppsIcon fontSize="medium" />
+              <AppsIcon fontSize="large" />
             </span>
             <span>
-              <NotificationsActiveIcon fontSize="medium" />
+              <NotificationsActiveIcon fontSize="large" />
             </span>
           </div>
         </div>

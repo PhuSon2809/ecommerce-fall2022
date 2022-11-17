@@ -1,0 +1,21 @@
+.header_comp{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.search_input{
+    width: 50%;
+}
+.header_avt{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.avt_infor{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.avatar_img{
+    margin-right: 10px;
+}

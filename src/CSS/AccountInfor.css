@@ -1,0 +1,32 @@
+.Account_Infor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+}
+.Container_Infor{
+    text-align: center;
+    margin-right: 20px;
+}
+.User_avatar_img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+}
+/* .Container_Infor{
+    width: 100%;
+    height: 100%;
+    background-color: green
+} */
+.User_name{
+    margin-top: 15px;
+    font-size: x-large;
+    font-weight: 700;
+}
+.profile-info-row{
+    display: flex;
+    gap: 5px;
+}
+.profile-info-name{
+    color: grey;
+}

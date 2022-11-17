@@ -24,6 +24,7 @@ import ordersApi from "~/api/ordersApi";
 import "./OrderDetail.scss";
 import formatDate from "~/utils/formatDate";
 import currencyFormat from "~/utils/formatPrize";
+import { useNavigate } from "react-router-dom";
 
 function OrderDetail(props) {
   const { orderID } = useParams();
@@ -41,7 +42,10 @@ function OrderDetail(props) {
       console.log(error);
     });
   }, [order]);
-
+  const navigate = useNavigate();
+  const handleClickDetail = () => {
+    navigate("/viewOrders");
+  };
   return (
     <div className="orderDetail">
       <Box className="header">
@@ -194,11 +198,12 @@ function OrderDetail(props) {
         <Button
           variant="outlined"
           color="success"
+          onClick={() => handleClickDetail()}
           startIcon={<KeyboardBackspaceIcon />}
         >
           Back
         </Button>
-        {order.orderStatus?.orderStatusID === 1 && (
+        {(order?.orderShip?.shipStatusID == "1") || (order?.orderShip?.shipStatusID == "-2") && (
           <Button variant="outlined" color="error" startIcon={<ClearIcon />}>
             Cancel
           </Button>
