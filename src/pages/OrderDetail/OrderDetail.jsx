@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   IconButton,
-  Paper,
   Table,
   TableBody,
   TableCell,
@@ -20,6 +19,7 @@ import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined
 import StoreOutlinedIcon from "@mui/icons-material/StoreOutlined";
 import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
 import DialerSipOutlinedIcon from "@mui/icons-material/DialerSipOutlined";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import ordersApi from "~/api/ordersApi";
 import "./OrderDetail.scss";
 import formatDate from "~/utils/formatDate";
@@ -190,11 +190,20 @@ function OrderDetail(props) {
         </Table>
       </TableContainer>
 
-      {order.orderStatus.orderStatusID === 1 && (
-        <Button variant="outlined" color="error">
-          <ClearIcon /> Cancel
+      <Box sx={{ display: "flex", gap: "10px" }}>
+        <Button
+          variant="outlined"
+          color="success"
+          startIcon={<KeyboardBackspaceIcon />}
+        >
+          Back
         </Button>
-      )}
+        {order.orderStatus?.orderStatusID === 1 && (
+          <Button variant="outlined" color="error" startIcon={<ClearIcon />}>
+            Cancel
+          </Button>
+        )}
+      </Box>
     </div>
   );
 }

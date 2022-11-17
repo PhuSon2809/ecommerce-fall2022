@@ -16,8 +16,11 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import CloseIcon from "@mui/icons-material/Close";
 import FormSubList from "./form-subList/formSubList";
 import categoryApi from "~/api/categoryApi";
+import { useSelector } from "react-redux";
 
 function AddProduct() {
+  const currentAccount = useSelector((state) => state.account.current);
+
   const [subItemFormList, setSubItemFormList] = useState([]);
 
   const { register, handleSubmit } = useForm({

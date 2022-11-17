@@ -188,16 +188,18 @@ function AllOrders({ tabValue, index, ...other }) {
                           <Button
                             variant="outlined"
                             color="success"
+                            startIcon={<RemoveRedEyeIcon />}
                             onClick={() => handleClickDetail(row.orderID)}
                           >
-                            <RemoveRedEyeIcon />
-                            <Typography sx={{ paddingLeft: "3px" }}>
                               Detail
-                            </Typography>
                           </Button>
                           {row.orderStatus.orderStatusID === 1 && (
-                            <Button variant="outlined" color="error">
-                              <ClearIcon /> Cancel
+                            <Button
+                              variant="outlined"
+                              color="error"
+                              startIcon={<ClearIcon />}
+                            >
+                              Cancel
                             </Button>
                           )}
                         </div>
