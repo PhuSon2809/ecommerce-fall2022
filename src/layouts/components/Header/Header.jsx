@@ -48,22 +48,24 @@ function Header() {
         </Link>
 
         <div className={cx("right")}>
-          <HeadlessTippy
-            interactive
-            delay={[0, 100]}
-            offset={[-5, 5]}
-            placement="bottom-end"
-            render={renderResult}
-          >
-            <div className={cx("info")}>
-              <Image
-                className={cx("user-avatar")}
-                src="https://firebasestorage.googleapis.com/v0/b/hostelmanagement-ae202.appspot.com/o/Avatar%2F000041.JPG?alt=media&token=4c9b1e96-b765-4265-9930-a4540a1b8230"
-                alt="avatar"
-              />
-              <span className={cx("user-name")}>Tran Phu Son</span>
-            </div>
-          </HeadlessTippy>
+          <div>
+            <HeadlessTippy
+              interactive
+              delay={[0, 100]}
+              offset={[-5, 5]}
+              placement="bottom-end"
+              render={renderResult}
+            >
+              <div className={cx("info")}>
+                <Image
+                  className={cx("user-avatar")}
+                  src="https://firebasestorage.googleapis.com/v0/b/hostelmanagement-ae202.appspot.com/o/Avatar%2F000041.JPG?alt=media&token=4c9b1e96-b765-4265-9930-a4540a1b8230"
+                  alt="avatar"
+                />
+                <span className={cx("user-name")}>Tran Phu Son</span>
+              </div>
+            </HeadlessTippy>
+          </div>
 
           <div className={cx("line")}></div>
 
