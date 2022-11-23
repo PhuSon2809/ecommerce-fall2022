@@ -4,4 +4,20 @@
   @include flex(flex-start, unset, row);
   gap: 10px;
   width: 100%;
+
+  .box-img {
+    @include flex(flex-start, unset, column);
+    gap: 10px;
+  }
+}
+
+.line-img {
+  @include flex(flex-start, unset, row);
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+
+  img {
+    height: 150px;
+  }
 }

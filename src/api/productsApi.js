@@ -1,9 +1,19 @@
 import axiosClient from "./axiosClient";
 
 const productsApi = {
-  getList(storeId) {
+  async getList(storeId) {
     const url = `/Item/store?storeId=${storeId}`;
-    return axiosClient.getWithID(url);
+    return await axiosClient.getWithID(url);
+  },
+
+  async addNewProduct(params) {
+    console.log(params);
+    const token = axiosClient.getToken();
+    if (token) {
+      axiosClient.setHeaderAuth(token);
+      const res = await axiosClient.post("/Item", params);
+      return res;
+    }
   },
 };
 
