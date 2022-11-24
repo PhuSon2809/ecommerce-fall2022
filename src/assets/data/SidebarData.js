@@ -41,10 +41,6 @@ export const SidebarData = [
         title: "My Orders",
         path: config.routes.viewOrders,
       },
-      {
-        title: "Cancellation",
-        path: config.routes.ordersCancel,
-      },
     ],
   },
   {
@@ -58,31 +54,27 @@ export const SidebarData = [
         title: "Shop Profile",
         path: config.routes.shopProfile,
       },
-      {
-        title: "My Reports",
-        path: config.routes.reports,
-      },
     ],
   },
-  {
-    title: "Settings",
-    icon: <SettingsOutlinedIcon fontSize="medium" />,
-    iconClosed: <KeyboardArrowDownOutlinedIcon fontSize="medium" />,
-    iconOpened: <KeyboardArrowLeftOutlinedIcon fontSize="medium" />,
+  // {
+  //   title: "Settings",
+  //   icon: <SettingsOutlinedIcon fontSize="medium" />,
+  //   iconClosed: <KeyboardArrowDownOutlinedIcon fontSize="medium" />,
+  //   iconOpened: <KeyboardArrowLeftOutlinedIcon fontSize="medium" />,
 
-    subNav: [
-      {
-        title: "My Addresses",
-        path: config.routes.myAddresses,
-      },
-      {
-        title: "Shop Settings",
-        path: config.routes.settingShop,
-      },
-      {
-        title: "Account",
-        path: config.routes.account,
-      },
-    ],
-  },
+  //   subNav: [
+  //     {
+  //       title: "My Addresses",
+  //       path: config.routes.myAddresses,
+  //     },
+  //     {
+  //       title: "Shop Settings",
+  //       path: config.routes.settingShop,
+  //     },
+  //     {
+  //       title: "Account",
+  //       path: config.routes.account,
+  //     },
+  //   ],
+  // },
 ];

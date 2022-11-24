@@ -6,11 +6,11 @@ import Login from './Login/Login';
 Authenticated.propTypes = {
     
 };
-function Authenticated(props) {
+function Authenticated({reload}) {
 
     return (
         <div>
-            <Login/>
+            <Login reload={reload}/>
         </div>
     );
 }

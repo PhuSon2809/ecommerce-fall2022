@@ -1,8 +1,10 @@
 import React from 'react'
+import ListRevenue from '../ShopProfile/ListRevenue'
+import ShopProfile from '../ShopProfile/ShopProfile'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div><ShopProfile/><ListRevenue/></div>
   )
 }
 

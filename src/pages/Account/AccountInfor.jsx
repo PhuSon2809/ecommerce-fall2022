@@ -7,7 +7,7 @@ import "~/CSS/Base.css"
 AccountInfor.propTypes = {};
 
 function AccountInfor(props) {
-  const currentAccount = useSelector((state) => state.account.current);
+  const currentAccount = JSON.parse(window.localStorage.getItem('user'));
   
 
   return (

@@ -8,7 +8,7 @@ const categoryApi = {
 
   getCategory(categoryID) {
     const url = `/Category/sub_category?categoryID=${categoryID}`;
-    return axiosClient.get2(url);
+    return axiosClient.getWithID(url);
   },
 };
 

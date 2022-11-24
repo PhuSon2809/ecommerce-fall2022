@@ -18,10 +18,11 @@ import { useSelector } from "react-redux";
 const cx = classNames.bind(styles);
 
 function Header() {
-  const currentAccount = useSelector((state) => state.account.current);
+  const currentAccount = JSON.parse(window.localStorage.getItem('user'));
   const dispatch = useDispatch();
 
   const handleLogout = () =>{
+    window.location.reload(false);
     const action = logout();
     dispatch(action);
   }

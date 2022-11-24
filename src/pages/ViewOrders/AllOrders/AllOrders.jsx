@@ -28,8 +28,16 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loading from "~/pages/Loading";
 import {  Dialog, DialogTitle, DialogActions, DialogContent} from '@mui/material';
+
+
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+
+
 function AllOrders({ tabValue, index, ...other }) {
-  const currentAccount = useSelector((state) => state.account.current);
+  const currentAccount = JSON.parse(window.localStorage.getItem('user'));
   const [value, setValue] = useState(new Date());
   const [orders, setOrders] = useState([]);
   const [loadings, setLoadings] = useState(false);
@@ -105,9 +113,62 @@ const handleClose = () => {
     setCancelOrderClick(id)
   };
 
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+  //filter
+  const [valueFrom, setValueFrom] = useState(null);
+  const [valueTo, setValueTo] = useState(null);
+  const [statusOrder, setStatus] = useState("");
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+  const handleClickItem = () => {
+    if((valueFrom && valueTo) !=  null && statusOrder !== 0){
+      fetchDataFilter()
+    }else if((valueFrom && valueTo) ==  null && statusOrder !== 0 ){
+      fetchDataFilterStatus()
+    }else if(statusOrder === 0 ){
+      fetchData()
+    }
+  }
+  const handleChangeStatusShip = (event) => {
+    setStatus(event.target.value);
+  };
+ 
+  const fetchDataFilter = async (e) => {
+    await axios
+      .get(
+     
+        `http://esmpfree-001-site1.etempurl.com/api/Order/get_order_status?dateFrom=${valueFrom}&dateTo=${valueTo}&shipOrderStatus=${statusOrder}&storeID=${currentAccount.storeID}`
+      )
+      .then((response) => {
+        setOrders(response.data);
+      });
+  };
+
+  
+  const fetchDataFilterStatus = async (e) => {
+    await axios
+      .get(
+        `http://esmpfree-001-site1.etempurl.com/api/Order/get_order_status?shipOrderStatus=${statusOrder}&storeID=${currentAccount.storeID}`
+      )
+      .then((response) => {
+        setOrders(response.data);
+      });
+  };
+  
+
+
   return (
     <>
-      {loadings ? (
+    
+      
         <div
           className="all-orders"
           role="tabpanel"
@@ -116,6 +177,71 @@ const handleClose = () => {
           aria-labelledby={`simple-tab-${index}`}
           {...other}
         >
+            <Box
+            sx={{
+              minWidth: 120,
+              display: "flex",
+              gap: 1.5,
+              float: "right",
+              margin: 2,
+            }}
+          >
+            <FormControl sx={{ width: 200 }}>
+              <InputLabel id="demo-simple-select-autowidth-label">
+                Trạng thái đơn hàng
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={statusOrder}
+                onChange={handleChangeStatusShip}
+                label="Trạng thái đơn hàng"
+                MenuProps={MenuProps}
+              >
+                <MenuItem value={0}>Tất cả</MenuItem>
+                <MenuItem value={-1}>Đơn hủy</MenuItem>
+                <MenuItem value={1}>Đơn chưa tiếp nhận</MenuItem>
+                <MenuItem value={2}>Đơn đã tiếp nhận</MenuItem>
+                <MenuItem value={3}>Đang lấy hàng</MenuItem>
+                <MenuItem value={4}>Đang giao hàng</MenuItem>
+                <MenuItem value={5}>Giao hàng thành công</MenuItem>
+                <MenuItem value={6}>Trả hàng</MenuItem>
+              </Select>
+           
+            </FormControl>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                inputFormat="DD-MM-YYYY"
+                disableFuture
+                label="Từ ngày"
+                value={valueFrom}
+                onChange={(newValue) => {
+                  setValueFrom(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                inputFormat="DD-MM-YYYY"
+                label="Đến ngày"
+                value={valueTo}
+                onChange={(newValue) => {
+                  setValueTo(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+           
+            <Button
+              variant="contained"
+              onClick={
+                handleClickItem
+              }
+            >
+              Xác nhận
+            </Button>
+          </Box>
           {tabValue === index && (
             <Box sx={{ p: 3 }}>
               <div className="inner-day" style={{ marginBottom: "20px" }}></div>
@@ -260,9 +386,7 @@ const handleClose = () => {
             </Box>
           )}
         </div>
-      ) : (
-        <Loading />
-      )}
+       
          <Dialog
                 open={open}
             >

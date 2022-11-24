@@ -1,11 +1,13 @@
 const routes = {
   login: "/login",
-
+  signup: "/signup",
   home: "/",
+  registerinfor: "/registerinfor",
 
   //products
   viewProducts: "/viewProducts",
   addProduct: "/addProduct",
+  detailItem: "/detailItem/:id",
 
   //orders
   viewOrders: "/viewOrders",

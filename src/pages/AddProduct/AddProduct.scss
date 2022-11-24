@@ -1,0 +1,7 @@
+@use "../../styles/" as *;
+
+.line {
+  @include flex(flex-start, unset, row);
+  gap: 10px;
+  width: 100%;
+}

@@ -187,7 +187,7 @@ margin-right: 10px;
     margin-left: 15px;
 } */
 .item_price{
-    font-size: 1.8rem;
+
     color: var(--primary-color)
 }
 .item_content-top{
@@ -216,26 +216,11 @@ margin-right: 10px;
     display: flex;
     justify-content: space-evenly;
 }
-/* .item_infor-sell{
-    display: -webkit-box;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    font-weight: 500;
-    margin: 0;
-    vertical-align: sub;
-    max-height: 3rem;
-    line-height: 1.5rem;
-    overflow: hidden;
-    max-width: 41.5625rem;
-    font-size: 1.25rem;
-    word-wrap: break-word;
-    margin-left: -377px;
-    margin-top: 30px;
-    position: absolute;
-    top: 122px;
-    right: 655px;
-} */
+.item_infor-sell{
+    position: relative;
+    top: 39px;
+    right: 342px;
+}
 .section_infor{
     position: absolute;
     top: 122px;

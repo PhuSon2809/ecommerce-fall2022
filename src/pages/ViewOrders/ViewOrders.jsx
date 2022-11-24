@@ -56,8 +56,7 @@ function ViewOrders() {
             aria-label="basic tabs example"
           >
             <Tab label="All Orders" {...a11yProps(0)} />
-            <Tab label="Item Two" {...a11yProps(1)} />
-            <Tab label="Item Three" {...a11yProps(2)} />
+   
           </Tabs>
         </Box>
         <AllOrders tabValue={value} index={0} />

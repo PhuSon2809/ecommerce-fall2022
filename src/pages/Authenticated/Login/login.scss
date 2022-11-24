@@ -1,0 +1,69 @@
+.formContainer {
+  height: 100vh;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://plexcollectionposters.com/images/2021/05/16/background-images-for-login-page3bc68c53b0db224b.jpg");
+  .formLogin {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 0 5px;
+    border-radius: 5px;
+    margin: auto;
+    float: right;
+    flex-direction: column;
+    overflow: visible;
+  }
+}
+.formTitle {
+  text-align: center;
+  margin-bottom: 30px;
+  color: rgb(73, 104, 255);
+  font-weight: bold;
+}
+
+.formContainer_Infor{
+    height: 100vh;
+    overflow: visible;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    background-image: url("https://plexcollectionposters.com/images/2021/05/16/background-images-for-login-page3bc68c53b0db224b.jpg");
+
+    .formContainer_input{
+        width: 800px;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        box-shadow: 0 0 5px;
+        border-radius: 5px;
+        margin: auto;
+      
+        flex-direction: column;
+        overflow: visible;
+    }
+    .form_input{
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+
+        .location_button{
+            display: flex;
+            flex-direction: column;
+            transform: translateX(+10%);
+            position: relative;
+            /* bottom: 76px; */
+            bottom: -124px;
+            left: 177px;
+        }
+
+        
+    }
+}

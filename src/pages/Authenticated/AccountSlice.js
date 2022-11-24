@@ -27,6 +27,10 @@ const accountSlice = createSlice({
     },
     reducers: {
         logout(state){
+            localStorage.removeItem(StorageKeys.ACCOUNT);
+            localStorage.removeItem(StorageKeys.TOKEN);
+
+            state.current = {}
         }
     },
     extraReducers: {

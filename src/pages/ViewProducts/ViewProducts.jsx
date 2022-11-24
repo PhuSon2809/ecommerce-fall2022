@@ -1,27 +1,96 @@
 import { IconButton, Paper, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import TableFooter from "@mui/material/TableFooter";
 import { useSelector } from "react-redux";
 import { Table } from "reactstrap";
 import productsApi from "~/api/productsApi";
 import DeleteIcon from '@mui/icons-material/Delete';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import PropTypes from "prop-types";
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function TablePaginationActions(props) {
+  const { loading = false } = props;
+  const theme = useTheme();
+  const { count, page, rowsPerPage, onPageChange } = props;
+
+  const handleFirstPageButtonClick = (event) => {
+    onPageChange(event, 0);
+  };
+
+  const handleBackButtonClick = (event) => {
+    onPageChange(event, page - 1);
+  };
+
+  const handleNextButtonClick = (event) => {
+    onPageChange(event, page + 1);
+  };
+
+  const handleLastPageButtonClick = (event) => {
+    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+  };
+
+  return (
+    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+      <IconButton
+        onClick={handleFirstPageButtonClick}
+        disabled={page === 0}
+        aria-label="first page"
+      >
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
+      </IconButton>
+      <IconButton
+        onClick={handleBackButtonClick}
+        disabled={page === 0}
+        aria-label="previous page"
+      >
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
+      </IconButton>
+      <IconButton
+        onClick={handleNextButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="next page"
+      >
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
+      </IconButton>
+      <IconButton
+        onClick={handleLastPageButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="last page"
+      >
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
+      </IconButton>
+    </Box>
+  );
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+TablePaginationActions.propTypes = {
+  count: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired,
+  rowsPerPage: PropTypes.number.isRequired,
+};
 
 
 function ViewProducts() {
   const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const currentAccount = useSelector((state) => state.account.current);
+  const currentAccount = JSON.parse(window.localStorage.getItem('user'));
   console.log(currentAccount);
   
   const fetchData = async () => {
@@ -36,18 +105,23 @@ function ViewProducts() {
 console.log("products:  ", products);
 
   // =========pagina tion=======
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const emptyRows =
+  page > 0 ? Math.max(0, (1 + page) * rowsPerPage - products.length) : 0;
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
+    setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
+  // const handleDeleteItem = async (id) =>{
+  //   await axios.put(`http://esmpfree-001-site1.etempurl.com/api/Item/hidden_item?itemID=${id}`)
+  //   console.log("id", id)
+  // }
 
 
   // ====================
@@ -63,17 +137,22 @@ console.log("products:  ", products);
           <TableHead>
             <TableRow hover>
               <TableCell>Tên</TableCell>
-              <TableCell align="right">Mô tả</TableCell>
-              <TableCell align="right">ưu đãi</TableCell>
-              <TableCell align="right">Hình ảnh</TableCell>
-              <TableCell align="right">Đơn giá</TableCell>
-              <TableCell align="right">Tỉnh</TableCell>
-              <TableCell align="right">Rate</TableCell>
-              <TableCell align="right">Action</TableCell>
+              <TableCell align="center">Mô tả</TableCell>
+              <TableCell align="center">Hình ảnh</TableCell>
+              <TableCell align="center">Đơn giá</TableCell>
+              <TableCell align="center">Đánh giá</TableCell>
+              <TableCell align="center">Xóa</TableCell>
+              <TableCell align="center">Xem chi tiết</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map((row) => (
+            {(rowsPerPage > 0
+                  ? products.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                  : products
+                ).map((row) => (
               <TableRow hover
                 key={row.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -82,17 +161,20 @@ console.log("products:  ", products);
                   {row.name}
                 </TableCell>
                 <TableCell align="right">{row.description}</TableCell>
-                <TableCell align="right">{row.discount}</TableCell>
                 <TableCell align="right">
-                  <img src={row.item_Image} width='200px' alt="" />
+                  <img src={row.item_Image} width='150px' alt="" />
                   
                   </TableCell>
                 <TableCell align="right">{row.price}</TableCell>
-                <TableCell align="right">{row.province}</TableCell>
                 <TableCell align="right">{row.rate}</TableCell>
                 <TableCell align="right">
                   <IconButton>
                     <DeleteIcon/>
+                  </IconButton>
+                </TableCell>
+                <TableCell align="right">
+                  <IconButton href = {`/detailItem/${row.itemID}`}>
+                    <VisibilityIcon/>
                   </IconButton>
                 </TableCell>
 
@@ -100,16 +182,24 @@ console.log("products:  ", products);
             ))}
           </TableBody>
         </Table>
+           <TablePagination
+                    rowsPerPageOptions={[5, 10, { label: "All", value: -1 }]}
+                    colSpan={3}
+                    count={products.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    SelectProps={{
+                      inputProps: {
+                        "aria-label": "rows per page",
+                      },
+                      native: true,
+                    }}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                    ActionsComponent={TablePaginationActions}
+                  />
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={products.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+
     </>
   );
 }

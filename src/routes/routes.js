@@ -12,9 +12,24 @@ import ViewProducts from "~/pages/ViewProducts/ViewProducts";
 import Authenticated from "~/pages/Authenticated/Authenticated";
 import OrderDetail from "~/pages/OrderDetail/OrderDetail";
 import AccountInfor from "~/pages/Account/AccountInfor";
+import DetailItem from "~/pages/ViewProducts/DetailItem";
+import SignUp from "~/pages/Authenticated/SignUp/SignUp";
+import RegisterInfor from "~/pages/Authenticated/SignUp/RegisterInfor";
 
 const supplierRoutes = [
-
+  // {
+  //   path: config.routes.login,
+  //   component: Login,
+  //   layout: null,
+  // },
+  {
+    path: config.routes.signup,
+    component: SignUp,
+  },
+  {
+    path: config.routes.registerinfor,
+    component:  RegisterInfor,
+  },
   {
     path: config.routes.home,
     component: Home,
@@ -58,6 +73,10 @@ const supplierRoutes = [
   {
     path: config.routes.account,
     component: Account,
+  },
+  {
+    path: config.routes.detailItem,
+    component: DetailItem,
   },
 ];
 

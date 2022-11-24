@@ -25,7 +25,8 @@ import "./OrderDetail.scss";
 import formatDate from "~/utils/formatDate";
 import currencyFormat from "~/utils/formatPrize";
 import { useNavigate } from "react-router-dom";
-
+import DomainVerificationIcon from '@mui/icons-material/DomainVerification';
+import Moment from "moment";
 function OrderDetail(props) {
   const { orderID } = useParams();
 
@@ -95,6 +96,12 @@ function OrderDetail(props) {
             <CallOutlinedIcon />
           </IconButton>
           {order.pick_Tel}
+        </Typography>
+        <Typography>
+          <IconButton color="success">
+            <DomainVerificationIcon />
+          </IconButton>
+          {order.pick_Time == null ? "----" : Moment(order.pick_Time).format("DD-MM-YYYY")}
         </Typography>
       </Box>
 
